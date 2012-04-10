@@ -5,7 +5,7 @@ The ABTesting library is a fixed-up version of the (dufunct?) Fairly Certain lib
 Ruby on Rails library A/Bingo [http://www.bingocardcreator.com/abingo].
 
 This library was created by Cole Fichter [www.colefichter.ca] at Mailout Interactive Inc.
-(Web: [http://www.mailoutinteractive.com], GitHub:[https://github.com/organizations/MailoutInteractive])
+(Web: [www.mailoutinteractive.com], GitHub:[https://github.com/organizations/MailoutInteractive])
 
 ABTesting fixes a number of bugs in the Fairly Certain library, and adds support for multi-alternative tests (these are
 sometimes called A/B/N or A/B/Z tests).
@@ -35,5 +35,14 @@ Don't worry if the files don't actually exist yet, they'll be created at runtime
 Two-Alternative Testing
 -----------------------
 
-Suppose you want to figure out which of the two buttons
+Suppose you want to figure out which of the two buttons induces users to sign up for your service.
+
+# Step 1: Add the test to your page
+
+First, include the controls that you'll use to display the test:
+
+'''
+<%@ Register TagPrefix='ab' Namespace='ABTesting.Controls' Assembly='ABTesting'  %>
+'''
+
 
