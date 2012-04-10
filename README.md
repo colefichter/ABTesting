@@ -41,8 +41,8 @@ Suppose you want to figure out which of the two buttons induces users to sign up
 
 First, include the controls that you'll use to display the test:
 
-'''
+```
 <%@ Register TagPrefix='ab' Namespace='ABTesting.Controls' Assembly='ABTesting'  %>
-'''
+```
 
 
