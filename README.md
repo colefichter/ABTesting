@@ -35,9 +35,9 @@ Don't worry if the files don't actually exist yet, they'll be created at runtime
 Two-Alternative Testing
 -----------------------
 
-Suppose you want to figure out which of the two buttons induces users to sign up for your service.
+Suppose you want to figure out which of two buttons induces more users to sign up for your service.
 
-## Step 1: Add the test to your page
+### Step 1: Add the test to your page
 
 First, include the controls that you'll use to display the test:
 
@@ -60,7 +60,7 @@ Next, add your test controls to the page:
 
 When a user visits the page, he will see one of the alternatives.
 
-## Step 2: Score a conversion
+### Step 2: Score a conversion
 
 When the user clicks on one of the buttons, you'll need to tell the ABTesting library that a "conversion" needs to be scored.
 Basically, this marks the user as having completed the goal action of the test:
@@ -78,3 +78,8 @@ Multiple-Alternative Testing
 
 The usage is the same as that listed above for two-alternative testing, but the library uses different statistical tests to determine
 the validity of the test. You can place as many alternatives as you like inside the test.
+
+Viewing Test Results
+--------------------
+
+You'll need to build a dashboard to view test results. An example of this will be provided soon...
