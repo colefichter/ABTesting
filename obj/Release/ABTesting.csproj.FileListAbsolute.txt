@@ -1,0 +1,5 @@
+C:\Visual Studio 2010\Projects\MyMailoutDotNet\ABTesting\bin\Release\ABTesting.dll
+C:\Visual Studio 2010\Projects\MyMailoutDotNet\ABTesting\bin\Release\ABTesting.pdb
+C:\Visual Studio 2010\Projects\MyMailoutDotNet\ABTesting\obj\Release\ResolveAssemblyReference.cache
+C:\Visual Studio 2010\Projects\MyMailoutDotNet\ABTesting\obj\Release\ABTesting.dll
+C:\Visual Studio 2010\Projects\MyMailoutDotNet\ABTesting\obj\Release\ABTesting.pdb
