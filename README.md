@@ -48,13 +48,13 @@ First, include the controls that you'll use to display the test:
 Next, add your test controls to the page:
 ```
 <ab:test testname='pub_home_signup_button' runat='server'>
-    <ab:alternative Name='red_button' runat='server' RenderSilently='False'>
-        <!-- TODO: replace this comment with the markup for alternative 'red_button' -->
-    </ab:alternative>
-        <ab:alternative Name='blue_button' runat='server' RenderSilently='False'>
-        <!-- TODO: replace this comment with the markup for alternative 'blue_button' -->
-    </ab:alternative>
-</ab:test>
+<ab:alternative Name='red_button' runat='server' RenderSilently='False'>
+<!-- TODO: replace this comment with the markup for alternative 'red_button' -->
+</ab:alternative>
+<ab:alternative Name='blue_button' runat='server' RenderSilently='False'>
+<!-- TODO: replace this comment with the markup for alternative 'blue_button' -->
+</ab:alternative>
+<ab:test>
 ```
 
 When a user visits the page, he will see one of the alternatives.
