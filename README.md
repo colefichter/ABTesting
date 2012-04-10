@@ -13,8 +13,8 @@ Installation and Setup
 Copy the source to your project (or clone the repo). The only configuration required is to point the file path provider(s) at
 the files where you'd like to store your data.
 
-The library relies on a rather simply provider model to configure the path on disk to the file store. You'll need to adjust the
-hard-code paths in three different locations.
+The library relies on a rather simple provider model to configure the path on disk to the file store. You'll need to adjust the
+hard-coded paths in three different locations.
 
 First, adjust the file path in the class ABTesting.Helpers.FilePathProviders.DebugFilePathProvider. This should point at your
 debug (ie: testing or non-production) tests.
@@ -24,6 +24,8 @@ production (ie: live, real-world) tests.
 
 Finally, adjust both paths in the class ABTesting.Helpers.FilePathProviders.AutomaticFilePathProvider. You'll also need to adjust
 the logic that picks between your debug and production tests.
+
+The usual file extension is ".ab", but this is not required. The library stores the test data as XML in the files you've configured.
 
 Don't worry if the files don't actually exist yet, they'll be created at runtime, if needed.
 
