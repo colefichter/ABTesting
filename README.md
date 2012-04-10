@@ -47,7 +47,7 @@ First, include the controls that you'll use to display the test:
 
 Next, add your test controls to the page:
 ```
-<ab:test testname='pub_home_signup_button' runat='server'>		
+<ab:test testname='pub_home_signup_button' runat='server'>
     <ab:alternative Name='red_button' runat='server' RenderSilently='False'>
         <!-- TODO: replace this comment with the markup for alternative 'red_button' -->
     </ab:alternative>
@@ -71,3 +71,9 @@ FairlyCertain.Score("pub_home_signup_button");
 ```
 
 And that's it!
+
+Multiple-Alternative Testing
+----------------------------
+
+The usage is the same as that listed above for two-alternative testing, but the library uses different statistical tests to determine
+the validity of the test. You can place as many alternatives as you like inside the test.
