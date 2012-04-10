@@ -37,7 +37,7 @@ Two-Alternative Testing
 
 Suppose you want to figure out which of the two buttons induces users to sign up for your service.
 
-# Step 1: Add the test to your page
+## Step 1: Add the test to your page
 
 First, include the controls that you'll use to display the test:
 
@@ -45,4 +45,29 @@ First, include the controls that you'll use to display the test:
 <%@ Register TagPrefix='ab' Namespace='ABTesting.Controls' Assembly='ABTesting'  %>
 ```
 
+Next, add your test controls to the page:
+```
+<ab:test testname='pub_home_signup_button' runat='server'>		
+    <ab:alternative Name='red_button' runat='server' RenderSilently='False'>
+        <!-- TODO: replace this comment with the markup for alternative 'red_button' -->
+    </ab:alternative>
+        <ab:alternative Name='blue_button' runat='server' RenderSilently='False'>
+        <!-- TODO: replace this comment with the markup for alternative 'blue_button' -->
+    </ab:alternative>
+</ab:test>
+```
 
+When a user visits the page, he will see one of the alternatives.
+
+## Step 2: Score a conversion
+
+When the user clicks on one of the buttons, you'll need to tell the ABTesting library that a "conversion" needs to be scored.
+Basically, this marks the user as having completed the goal action of the test:
+
+```
+//In your code-behind button click handler:
+//The test name string must match the testname="" attribute listed above!
+FairlyCertain.Score("pub_home_signup_button"); 
+```
+
+And that's it!
