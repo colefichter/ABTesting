@@ -82,4 +82,62 @@ the validity of the test. You can place as many alternatives as you like inside 
 Viewing Test Results
 --------------------
 
-You'll need to build a dashboard to view test results. An example of this will be provided soon...
+You'll need to build a dashboard to view test results. The following repeater code is an example of how such a
+dashboard could be implemented.
+
+'''
+<asp:Repeater ID="rpTests" OnItemDataBound="rpTests_ItemDataBound" OnItemCommand="rpTests_ItemCommand" runat="server">
+    <ItemTemplate>
+        <h2><%# Eval("TestName")%>
+            - <em><%# Convert.ToString(Eval("Status")) %></em>
+            <asp:LinkButton ID="lnkDelete" runat="server" CommandName="delete" OnClientClick="return confirm('Are you sure you want to delete this test?');"                
+                CommandArgument='<%# Eval("TestName") %>'>delete</asp:LinkButton>
+        </h2>
+        <table class="experiment" cellspacing="0" border="1">
+            <tr class="header_row">
+                <th>Alternative</th>
+                <th align="center">Participants</th>
+                <th align="center">Successes</th>
+                <th>Notes</th>
+            </tr>
+            <asp:Repeater ID="rpAlternatives" runat="server">
+                <ItemTemplate>
+                    <tr class="alternative_row">
+                        <td><%# Eval("content")%></td>
+                        <td align="center"><%# Eval("participants")%></td>
+                        <td align="center"><%# Eval("conversions")%>
+                          (<%# Eval("PrettyConversionRate")%>)
+                        </td>
+                        <td></td>
+                    </tr>
+                </ItemTemplate>
+            </asp:Repeater>
+            <tr class="experiment_row">
+                <td><strong>Experiment Total:</strong></td>
+                <td align="center"><%# Eval("participants")%></td>
+                <td align="center"><%# Eval("conversions")%>
+                    (<%# Eval("PrettyConversionRate")%>)
+                </td>
+                <td></td>
+            </tr>
+            <tr id="Tr1" runat="server" visible='<%# Eval("IsComplete") %>' style="border-top: 1px solid #DFDEDD;">
+                <td colspan="4">
+                    <b>Number of Alternatives: </b>
+                    <%# ((ABTesting.Experiment)Container.DataItem).Alternatives.Count()%><br />
+                    <b>Significance Test: </b>
+                    <%# ((ABTesting.Experiment)Container.DataItem).SignificanceTestName%><br />
+                    <b>Test Assumptions/Conditions: </b>
+                    <%# String.Join("; ", ((ABTesting.Experiment)Container.DataItem).AssumptionsToCheck)%><br />
+                    <b>P-Value: </b>
+                    <%# ((ABTesting.Experiment)Container.DataItem).GetPValue()%><br />
+                    <b>Best Alternative: </b>[<%# ((ABTesting.Experiment)Container.DataItem).GetBestAlternative().Content%>]<br />
+                    <%#  (Container.DataItem as ABTesting.Experiment).GetResultDescription()%>
+                </td>
+            </tr>
+        </table>
+        <br />
+    </ItemTemplate>
+</asp:Repeater>
+'''
+
+

@@ -51,21 +51,6 @@ namespace ABTesting.Helpers
 
         public static FileHelper GetInstance(TestFileType fileType)
         {
-            //if (_instance == null)
-            //{
-            //    lock (syncRoot)
-            //    {
-            //        if (_instance == null)
-            //        {
-            //            _instance = new FileHelper();
-            //        }
-            //        else
-            //        {
-
-            //        }
-            //    }
-            //}
-
             lock (syncRoot)
             {
                 IFilePathProvider provider = GetProvider(fileType);
@@ -109,8 +94,6 @@ namespace ABTesting.Helpers
 
             return provider;
         }
-
-
         
         public string FilePath
         {
@@ -156,7 +139,6 @@ namespace ABTesting.Helpers
                 SerializationHelper.SerializeToFile(tests, _filePathProvider.GetFilePath());
             }
         }
-
 
         /// <summary>
         /// Attempt to populate ourself from a saved file.  Will leave us with in a clean, empty state if the file is missing or corrupt.
