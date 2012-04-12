@@ -85,7 +85,7 @@ Viewing Test Results
 You'll need to build a dashboard to view test results. The following repeater code is an example of how such a
 dashboard could be implemented.
 
-'''
+```
 <asp:Repeater ID="rpTests" OnItemDataBound="rpTests_ItemDataBound" OnItemCommand="rpTests_ItemCommand" runat="server">
     <ItemTemplate>
         <h2><%# Eval("TestName")%>
@@ -138,6 +138,6 @@ dashboard could be implemented.
         <br />
     </ItemTemplate>
 </asp:Repeater>
-'''
+```
 
 
