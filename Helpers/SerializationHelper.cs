@@ -13,40 +13,6 @@ namespace ABTesting.Helpers
 	public class SerializationHelper
 	{
 		/// <summary>
-		/// Given a serializable object, returns an XML string representing that object.
-		/// </summary>
-		/// <param name="obj"></param>
-		/// <returns></returns>
-		public static string Serialize(object obj)
-		{
-			XmlSerializer xs = new XmlSerializer(obj.GetType());
-			MemoryStream buffer = new MemoryStream();
-			xs.Serialize(buffer, obj);
-			return ASCIIEncoding.ASCII.GetString(buffer.ToArray());
-		}
-
-		/// <summary>
-		/// Given a serializable object, returns an XML string representing that object.
-		/// </summary>
-		/// <param name="obj"></param>
-		/// <returns></returns>
-		public static string SerializeBinary(object obj)
-		{
-			try
-			{
-				BinaryFormatter formatter = new BinaryFormatter();
-				MemoryStream buffer = new MemoryStream();
-				formatter.Serialize(buffer, obj);
-
-				return ASCIIEncoding.ASCII.GetString(buffer.ToArray());
-			}
-			catch (Exception ex)
-			{
-				throw new Exception("could not serialize this object:\n" + obj + "\n\n" + ex);
-			}
-		}
-
-		/// <summary>
 		/// Given a serializable object, creates an XML file.
 		/// </summary>
 		/// <param name="obj"></param>
@@ -67,54 +33,7 @@ namespace ABTesting.Helpers
 				throw new Exception("could not serialize this object:\n" + obj + "\n\n" + ex);
 			}
 		}
-
-		/// <summary>
-		/// Given an XML string representing an object, returns that object.
-		/// </summary>
-		/// <param name="xml"></param>
-		/// <param name="type"></param>
-		/// <returns></returns>
-		public static object DeSerialize(string xml, Type type)
-		{
-			// empty strings represent null objects
-			if (xml == "")
-				return null;
-
-			XmlSerializer xs = new XmlSerializer(type);
-			MemoryStream buffer = new MemoryStream(ASCIIEncoding.ASCII.GetBytes(xml));
-			try
-			{
-				return xs.Deserialize(buffer);
-			}
-			catch
-			{
-				throw new Exception("could not deserialize this string:\n" + xml);
-			}
-		}
-
-		/// <summary>
-		/// Given an XML string representing an object, returns that object.
-		/// </summary>
-		/// <param name="data"></param>
-		/// <returns></returns>
-		public static object DeSerializeBinary(string data)
-		{
-			// empty strings represent null objects
-			if (data == "")
-				return null;
-
-			BinaryFormatter formatter = new BinaryFormatter();
-			MemoryStream buffer = new MemoryStream(ASCIIEncoding.ASCII.GetBytes(data));
-			try
-			{
-				return formatter.Deserialize(buffer);
-			}
-			catch
-			{
-				throw new Exception("could not deserialize this string:\n" + data);
-			}
-		}
-
+        
 		/// <summary>
 		/// Given the name of an XML file representing an object, returns that object.
 		/// </summary>
@@ -127,7 +46,7 @@ namespace ABTesting.Helpers
 			{
 				XmlSerializer xs = new XmlSerializer(type);
 
-				using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+				using (FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.None))
 				{
 					object obj = xs.Deserialize(fs);
 					fs.Close();

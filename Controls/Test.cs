@@ -17,8 +17,9 @@ namespace ABTesting.Controls
 				return;
 			}
 
-			Experiment test = FairlyCertain.GetOrCreateTest(TestName, Controls);
-			ABAlternative choice = FairlyCertain.GetUserAlternative(test);
+            FairlyCertain fc = new FairlyCertain();
+			Experiment test = fc.GetOrCreateTest(TestName, Controls);
+			ABAlternative choice = fc.GetUserAlternative(test);
 
 			Controls[choice.Index].RenderControl(writer);
 		}

@@ -109,13 +109,15 @@ namespace ABTesting
         {
             if (test.Alternatives.Count != 2)
             {
-                throw new Exception("Sorry, can't currently automatically calculate statistics for A/B tests with > 2 alternatives.");
+                //throw new Exception("Sorry, can't currently automatically calculate statistics for A/B tests with > 2 alternatives.");
+                return double.PositiveInfinity;
             }
             
             //if (test.Alternatives[0].Participants == 0 || test.Alternatives[1].Participants == 0)
             if (!test.AllAlternativesHaveParticipants)
             {
-                throw new Exception("Can't calculate the z score if either of the alternatives lacks participants.");
+                //throw new Exception("Can't calculate the z score if either of the alternatives lacks participants.");
+                return double.PositiveInfinity;
             }
 
             /* CF: These variable names are not great. What's happening here is we are performing a Two-Proportion Z-test with a pooled difference of the standard errors 

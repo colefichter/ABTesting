@@ -152,16 +152,6 @@ namespace ABTesting
 
             return choice;
         }
-
-        /// <summary>
-        /// Score a conversion for this test for the specified user
-        /// </summary>
-        /// <param name="user"></param>
-        public void Score(ABUser user)
-        {
-            GetUserAlternative(user.ID).ScoreConversion();
-        }
-
         
         public ABAlternative GetBestAlternative()
         {

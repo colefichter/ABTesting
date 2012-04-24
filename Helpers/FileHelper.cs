@@ -34,8 +34,6 @@ namespace ABTesting.Helpers
         /// <returns></returns>
         public static FileHelper GetInstance()
         {
-            //return GetInstance(TestFileType.Automatic);
-
             lock (syncRoot)
             {
                 if (_instance == null)
@@ -73,6 +71,20 @@ namespace ABTesting.Helpers
 
         #endregion
 
+
+        public FileSystemWatcher GetFileWatcher()
+        {
+            string fullPath = _filePathProvider.GetFilePath();
+            string directory = Path.GetDirectoryName(fullPath);
+            string fileName = Path.GetFileName(fullPath);
+
+            FileSystemWatcher watcher = new FileSystemWatcher(directory);
+            watcher.Filter = fileName;
+            watcher.NotifyFilter = NotifyFilters.LastWrite;
+
+            return watcher;
+        }
+        
         private static IFilePathProvider GetProvider(TestFileType fileType)
         {
             IFilePathProvider provider = null;
@@ -103,36 +115,10 @@ namespace ABTesting.Helpers
             }
         }
 
-        public void Save(SerializableDictionary<string, Experiment> tests)
-        {
-            // NOTE: in high traffic situations, this will probably fall down.
-            // If it becomes an issue, migrate to a Singleton instance and lock that while doing this check:
-            if ((DateTime.Now - _lastSave).TotalMinutes > 1)
-            {
-                lock (syncRoot)
-                {
-                    if ((DateTime.Now - _lastSave).TotalMinutes > 1)
-                    {
-                        _lastSave = DateTime.Now;
-                        try
-                        {
-
-                            ForceSave(tests);
-                        }
-                        catch
-                        {
-                            // TODO - add onException handler to FairlyCertain
-                            // We're only saving AB data.  Not worth complaining about if it fails.
-                        }
-                    }
-                }
-            }
-        }
-
         /// <summary>
         /// Write serialized test data to a file on the server.  Right now.
         /// </summary>
-        public void ForceSave(SerializableDictionary<string, Experiment> tests)
+        public void Save(SerializableDictionary<string, Experiment> tests)
         {
             lock (syncRoot)
             {
@@ -156,9 +142,7 @@ namespace ABTesting.Helpers
                     {
                         try
                         {
-                            tests =
-                                (SerializableDictionary<string, Experiment>)
-                                SerializationHelper.DeSerializeFromFile(path, typeof(SerializableDictionary<string, Experiment>));
+                            tests = (SerializableDictionary<string, Experiment>) SerializationHelper.DeSerializeFromFile(path, typeof(SerializableDictionary<string, Experiment>));
                         }
                         catch
                         {
