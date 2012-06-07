@@ -11,7 +11,7 @@ namespace ABTesting
 
     public class Experiment
     {
-        public static readonly int DEFAULT_MIN_OBSERVATIONS = 500;
+        public static readonly int DEFAULT_MIN_OBSERVATIONS = 200;
 
         public string TestName { get; set; }
         public DateTime CreatedOn { get; set; }
