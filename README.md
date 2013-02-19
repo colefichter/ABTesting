@@ -1,7 +1,7 @@
 ABTesting
 =========
 
-The ABTesting library is a fixed-up version of the (defunct?) Fairly Certain library, which was a C-sharp port of the 
+The ABTesting library is a fixed-up version of the Fairly Certain library [http://www.fairtutor.com/fairlycertain/], which was a C-sharp port of the 
 Ruby on Rails library A/Bingo [http://www.bingocardcreator.com/abingo].
 
 This library was created by Cole Fichter [www.colefichter.ca] at Mailout Interactive Inc.
